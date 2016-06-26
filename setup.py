@@ -53,6 +53,4 @@ setup(name="datrie",
               'src/stdio_ext.c'
           ], include_dirs=[LIBDATRIE_DIR])
       ],
-
-      setup_requires=["pytest-runner"],
       tests_require=["pytest", "hypothesis"])
