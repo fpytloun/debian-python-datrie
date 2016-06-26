@@ -15,6 +15,8 @@ Build-Depends: debhelper (>= 9),
                python3-setuptools,
 Standards-Version: 3.9.8
 Homepage: https://github.com/kmike/datrie
+Vcs-Browser: https://anonscm.debian.org/cgit/python-modules/packages/python-datrie.git/
+Vcs-Git: https://anonscm.debian.org/git/python-modules/packages/python-datrie.git
 X-Python-Version: >= 2.6
 X-Python3-Version: >= 3.3
 
