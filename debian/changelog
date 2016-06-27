@@ -1,0 +1,5 @@
+python-datrie (0.7.1-1) unstable; urgency=low
+
+  * Initial release (Closes: #828741)
+
+ -- Filip Pytloun <filip@pytloun.cz>  Mon, 27 Jun 2016 12:55:44 +0200

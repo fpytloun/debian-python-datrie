@@ -1,0 +1,51 @@
+Source: python-datrie
+Maintainer: Filip Pytloun <filip@pytloun.cz>
+Section: python
+Priority: optional
+Build-Depends: debhelper (>= 9),
+               dh-python,
+               libdatrie-dev,
+               python-all-dev,
+               python-hypothesis,
+               python-pytest,
+               python-setuptools,
+               python3-all-dev,
+               python3-hypothesis,
+               python3-pytest,
+               python3-setuptools,
+Standards-Version: 3.9.8
+Homepage: https://github.com/kmike/datrie
+X-Python-Version: >= 2.6
+X-Python3-Version: >= 3.2
+
+Package: python-datrie
+Architecture: any
+Depends: ${misc:Depends},
+         ${python:Depends},
+         ${shlibs:Depends},
+Description: Super-fast, efficiently stored Trie for Python
+ trie variable is a dict-like object that can have unicode keys of certain
+ ranges and Python objects as values.
+ .
+ In addition to implementing the mapping interface, tries facilitate finding
+ the items for a given prefix, and vice versa, finding the items whose keys are
+ prefixes of a given string. As a common special case, finding the
+ longest-prefix item is also supported.
+ .
+ This package installs the library for Python 2.
+
+Package: python3-datrie
+Architecture: any
+Depends: ${misc:Depends},
+         ${python3:Depends},
+         ${shlibs:Depends},
+Description: Super-fast, efficiently stored Trie for Python 3
+ trie variable is a dict-like object that can have unicode keys of certain
+ ranges and Python objects as values.
+ .
+ In addition to implementing the mapping interface, tries facilitate finding
+ the items for a given prefix, and vice versa, finding the items whose keys are
+ prefixes of a given string. As a common special case, finding the
+ longest-prefix item is also supported.
+ .
+ This package installs the library for Python 3.
