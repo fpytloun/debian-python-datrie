@@ -6,3 +6,6 @@
 python-datrie_0.7.1.orig.tar.gz
 757c73a5d6b65dd981b370582f529e3156808662
 189413
+debianTag="debian/%e%v"
+patchedTag="patched/%e%v"
+upstreamTag="upstream/%e%u"
