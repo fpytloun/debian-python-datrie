@@ -6,7 +6,7 @@ import os
 
 from setuptools import setup, Extension
 
-LIBDATRIE_DIR = 'libdatrie'
+LIBDATRIE_DIR = '/usr/include/datrie'
 LIBDATRIE_FILES = glob.glob(os.path.join(LIBDATRIE_DIR, "datrie", "*.c"))
 
 DESCRIPTION = __doc__

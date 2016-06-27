@@ -1,1 +1,2 @@
 0001-Don-t-require-pytest-running-on-regular-setup.patch
+0002-Use-libdatrie-dev-for-build.patch
