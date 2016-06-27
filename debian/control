@@ -16,7 +16,7 @@ Build-Depends: debhelper (>= 9),
 Standards-Version: 3.9.8
 Homepage: https://github.com/kmike/datrie
 X-Python-Version: >= 2.6
-X-Python3-Version: >= 3.2
+X-Python3-Version: >= 3.3
 
 Package: python-datrie
 Architecture: any
