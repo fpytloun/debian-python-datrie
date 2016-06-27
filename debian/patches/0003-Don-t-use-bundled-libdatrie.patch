@@ -1,0 +1,118 @@
+From 757e906f7463c678f56224a1ad1f5a3f77c6cf64 Mon Sep 17 00:00:00 2001
+From: Filip Pytloun <filip@pytloun.cz>
+Date: Mon, 27 Jun 2016 15:52:10 +0200
+Subject: Don't use bundled libdatrie
+
+---
+ MANIFEST.in     | 2 --
+ setup.py        | 7 ++-----
+ src/cdatrie.c   | 6 +++---
+ src/cdatrie.pxd | 6 +++---
+ src/datrie.c    | 6 +++---
+ 5 files changed, 11 insertions(+), 16 deletions(-)
+
+diff --git a/MANIFEST.in b/MANIFEST.in
+index 4279900..a077ffe 100644
+--- a/MANIFEST.in
++++ b/MANIFEST.in
+@@ -4,8 +4,6 @@ include COPYING
+ include tox.ini
+ include tox-bench.ini
+ include update_c.sh
+-recursive-include libdatrie *.h
+-recursive-include libdatrie *.c
+ include tests/words100k.txt.zip
+ recursive-include tests *.py
+ 
+diff --git a/setup.py b/setup.py
+index cf002a0..74ae1a7 100755
+--- a/setup.py
++++ b/setup.py
+@@ -7,7 +7,6 @@ import os
+ from setuptools import setup, Extension
+ 
+ LIBDATRIE_DIR = '/usr/include/datrie'
+-LIBDATRIE_FILES = glob.glob(os.path.join(LIBDATRIE_DIR, "datrie", "*.c"))
+ 
+ DESCRIPTION = __doc__
+ LONG_DESCRIPTION = open('README.rst').read() + open('CHANGES.rst').read()
+@@ -43,14 +42,12 @@ setup(name="datrie",
+       license=LICENSE,
+       url='https://github.com/kmike/datrie',
+       classifiers=CLASSIFIERS,
+-      libraries=[('libdatrie', {
+-          "sources": LIBDATRIE_FILES,
+-          "include_dirs": [LIBDATRIE_DIR]})],
+       ext_modules=[
+           Extension("datrie", [
+               'src/datrie.c',
+               'src/cdatrie.c',
+               'src/stdio_ext.c'
+-          ], include_dirs=[LIBDATRIE_DIR])
++          ], include_dirs=[LIBDATRIE_DIR],
++              libraries=['datrie'])
+       ],
+       tests_require=["pytest", "hypothesis"])
+diff --git a/src/cdatrie.c b/src/cdatrie.c
+index 83f30a6..c5d5a2a 100644
+--- a/src/cdatrie.c
++++ b/src/cdatrie.c
+@@ -238,9 +238,9 @@ static CYTHON_INLINE float __PYX_NAN() {
+ #define __PYX_HAVE_API__cdatrie
+ #include "string.h"
+ #include "stdio.h"
+-#include "../libdatrie/datrie/triedefs.h"
+-#include "../libdatrie/datrie/alpha-map.h"
+-#include "../libdatrie/datrie/trie.h"
++#include "/usr/include/datrie/triedefs.h"
++#include "/usr/include/datrie/alpha-map.h"
++#include "/usr/include/datrie/trie.h"
+ #ifdef _OPENMP
+ #include <omp.h>
+ #endif /* _OPENMP */
+diff --git a/src/cdatrie.pxd b/src/cdatrie.pxd
+index 6a33393..f0414e5 100644
+--- a/src/cdatrie.pxd
++++ b/src/cdatrie.pxd
+@@ -1,13 +1,13 @@
+ # cython: profile=False
+ from libc cimport stdio
+ 
+-cdef extern from "../libdatrie/datrie/triedefs.h":
++cdef extern from "/usr/include/datrie/triedefs.h":
+     ctypedef int AlphaChar # it should be utf32 letter
+     ctypedef unsigned char TrieChar  # 1 byte
+     ctypedef int TrieIndex
+     ctypedef int TrieData  # int
+ 
+-cdef extern from "../libdatrie/datrie/alpha-map.h":
++cdef extern from "/usr/include/datrie/alpha-map.h":
+ 
+     struct AlphaMap:
+         pass
+@@ -20,7 +20,7 @@ cdef extern from "../libdatrie/datrie/alpha-map.h":
+     int alpha_char_strlen (AlphaChar *str)
+ 
+ 
+-cdef extern from "../libdatrie/datrie/trie.h":
++cdef extern from "/usr/include/datrie/trie.h":
+ 
+     ctypedef struct Trie:
+         pass
+diff --git a/src/datrie.c b/src/datrie.c
+index 848d7c7..6758f31 100644
+--- a/src/datrie.c
++++ b/src/datrie.c
+@@ -239,9 +239,9 @@ static CYTHON_INLINE float __PYX_NAN() {
+ #include "string.h"
+ #include "stdlib.h"
+ #include "stdio.h"
+-#include "../libdatrie/datrie/triedefs.h"
+-#include "../libdatrie/datrie/alpha-map.h"
+-#include "../libdatrie/datrie/trie.h"
++#include "/usr/include/datrie/triedefs.h"
++#include "/usr/include/datrie/alpha-map.h"
++#include "/usr/include/datrie/trie.h"
+ #ifdef _OPENMP
+ #include <omp.h>
+ #endif /* _OPENMP */
